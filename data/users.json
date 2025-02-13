@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1739423763299",
+    "name": "Goncalo Silva",
+    "email": "goncaalosilvaa11@gmail.com",
+    "password": "$2a$10$zt1FWQtI3I6f7ma95eXVYepV7W/veKVmkcc8dhDEt0HbPB2xxWKli",
+    "accountType": "pro"
+  },
+  {
+    "id": "1739431043759",
+    "name": "Conta Teste",
+    "email": "contateste@gmail.com",
+    "password": "$2a$10$ek/5RQs7MGe9.wld5Qw/M.63BPcvEj9FcVzFunZgVqzqrDbF2hXXW",
+    "accountType": "team"
+  },
+  {
+    "id": "1739432173221",
+    "name": "teste",
+    "email": "teste@gmail.com",
+    "password": "$2a$10$wljGcKJCGHEX6rUc5JzB2OwKfV4ILnKtlTcoKvk7whxCEfcWIXH1K"
+  }
+]
