@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-type Event = {
+type CalendarEvent = {
   id?: string
   title: string
   description?: string
@@ -13,13 +13,13 @@ type Event = {
 }
 
 type Props = {
-  event?: Event | null
-  onSave: (event: Event) => void
+  event?: CalendarEvent | null
+  onSave: (event: CalendarEvent) => void
   onClose: () => void
 }
 
 export function EventModal({ event, onSave, onClose }: Props) {
-  const [formData, setFormData] = useState<Event>({
+  const [formData, setFormData] = useState<CalendarEvent>({
     title: event?.title || '',
     description: event?.description || '',
     start: event?.start || new Date().toISOString().split('T')[0],

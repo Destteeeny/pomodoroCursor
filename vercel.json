@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd meu-projeto-next && npm install && npm run build",
+  "outputDirectory": "meu-projeto-next/.next",
+  "devCommand": "cd meu-projeto-next && npm run dev",
+  "installCommand": "cd meu-projeto-next && npm install"
+} 

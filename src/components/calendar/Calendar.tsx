@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-type Event = {
+type CalendarEvent = {
   id: string
   title: string
   description?: string
@@ -13,10 +13,10 @@ type Event = {
 }
 
 type Props = {
-  events: Event[]
+  events: CalendarEvent[]
   selectedDate: Date
   onDateSelect: (date: Date) => void
-  onEventClick: (event: Event) => void
+  onEventClick: (event: CalendarEvent) => void
   onTimeSlotClick: (date: Date) => void
 }
 

@@ -6,7 +6,7 @@ import { PageContainer } from '@/components/app/PageContainer'
 import { Calendar } from '@/components/calendar/Calendar'
 import { EventModal } from '@/components/calendar/EventModal'
 
-type Event = {
+type CalendarEvent = {
   id: string
   title: string
   description?: string
@@ -16,10 +16,10 @@ type Event = {
 }
 
 export default function CalendarPage() {
-  const [events, setEvents] = useState<Event[]>([])
+  const [events, setEvents] = useState<CalendarEvent[]>([])
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [showEventModal, setShowEventModal] = useState(false)
-  const [editingEvent, setEditingEvent] = useState<Event | null>(null)
+  const [editingEvent, setEditingEvent] = useState<CalendarEvent | null>(null)
 
   useEffect(() => {
     const user = localStorage.getItem('user')
@@ -29,6 +29,22 @@ export default function CalendarPage() {
     const savedEvents = localStorage.getItem(`events_${userId}`)
     if (savedEvents) setEvents(JSON.parse(savedEvents))
   }, [])
+
+  const handleSaveEvent = (event: Omit<CalendarEvent, 'id'> & { id?: string }) => {
+    if (editingEvent) {
+      // Se estamos editando, usamos o ID existente
+      setEvents(events.map(e => 
+        e.id === editingEvent.id 
+          ? { ...event, id: editingEvent.id } 
+          : e
+      ))
+    } else {
+      // Se é um novo evento, geramos um novo ID
+      setEvents([...events, { ...event, id: Date.now().toString() }])
+    }
+    setShowEventModal(false)
+    setEditingEvent(null)
+  }
 
   return (
     <PageContainer>
@@ -51,15 +67,7 @@ export default function CalendarPage() {
         {showEventModal && (
           <EventModal
             event={editingEvent}
-            onSave={(event) => {
-              if (editingEvent) {
-                setEvents(events.map(e => e.id === event.id ? event : e))
-              } else {
-                setEvents([...events, { ...event, id: Date.now().toString() }])
-              }
-              setShowEventModal(false)
-              setEditingEvent(null)
-            }}
+            onSave={handleSaveEvent}
             onClose={() => {
               setShowEventModal(false)
               setEditingEvent(null)
